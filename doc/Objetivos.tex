@@ -1,0 +1,52 @@
+%!TEX root =  tfg.tex
+\chapter{Context}
+
+\begin{abstract}
+In this chapter we are going to explain the motivation, the main problem that we are going to solve. The development of the solution to the problem will be detailed, the results, plannification and costs for this solution.
+\end{abstract}
+
+\section[Motivation]{Motivation}
+
+During my last year of degree I was wondering what I was going to work on my thesis. I knew I wanted to work on something related to health because I had always been interested in creating a product that would have an impact on society. 
+
+In my internship I was in one of the most important research centres in France in the field of artificial intelligence. There I realized the potential of this technology that was emerging during these years and that I could do something related to health and that I had not worked previously during my studies.
+
+The results expected at the end of this work will not have the same quality and precision work and studies recintes in the market (accuracy of 80\%-90\%) because we do not have the same resources as them. The main objective is to achieve a scalable prototype whose precision and quality will increase in the future.
+
+
+\section[Problem]{Problem}
+The problem that we are going to solve is a binary classification, we'll receive an image and we will detect if the image has skin cancer or not.
+The objetives of this project is create a model based on deep learning algorithms to solve this problem, use different techniques to improve the accuracy and compare the obtained results with other algorithms or other works (papers, studies, etc). At the end we are going to expose the model in a REST API so we can use in the future for other projects, for example:
+
+\begin{enumerate}
+\item Create an app to take photos of skin moles and detect if there are skin cancer or not on it.
+\item Monitor and collect more data for future studies (areas, age, gender affected by skin cancer...)
+\end{enumerate}
+
+\newpage
+\section{ML Methodology}
+
+This project is a machine learning project that is highly iteractive. It has some similarities as a software project. 
+
+\begin{table*}[htb]
+	\centering
+	\begin{coolTable}{ll}{2}
+{ML project structure}
+	\textbf{Data collection and labeling}&Create labeling and validate quality of the data\\
+	\textbf{Model exploration}&Start with a simple model and improve it\\
+	\textbf{Testing and evaluation}&Revisit model evaluation metric\\
+	\textbf{Model deployment}&Expose model as REST API, \\
+	\textbf{Ongoing model maintenance}&Retrain model with new data to prevent model staleness\\
+	\end{coolTable}
+	\caption{Machine Learning project structure}
+\end{table*}
+
+\section[Data collection and labeling]{Data collection and labeling}
+
+During this period we have to determine the feasibility of the project, in our case it's not a hard task to acquire the data, the ISIC institute exposed in 2018 more than 20.000 skin lesiono images during a challenge. 
+\url{https://challenge2018.isic-archive.com/}
+Furthermore exist other famous datasets like \emph{PH2Dataset} from the Oporto Universiy which the number of images is much lower but we can use some Data Augmentation techniques to improve the results.
+
+\subsection[ISIC Dataset]{ISIC Dataset}
+
+ 

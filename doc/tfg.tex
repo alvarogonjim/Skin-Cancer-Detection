@@ -1,0 +1,139 @@
+% A sample model to write a TFG project
+
+% IMPORTANT!!! Substitute "draft" with "final" to render the final version of the TFG 
+\documentclass[titlepage,openright,twoside,a4paper,final,12pt,spanish]{book}
+
+% Configuring the environment to support spanish characters.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\selectlanguage{english}
+
+\usepackage[pdftex,final]{graphicx}
+
+% Style package
+\usepackage{trinidad-TfG}
+% Font Package (Palatino)
+\usepackage{mathpazo}
+% Packages for specific capabilities
+\usepackage{rotating} % for text rotation in tables
+\usepackage{multirow} % for multirow in tables
+\usepackage{subfigure} % Place subfigures in figure environment
+% Packages for specific symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{eurosym} % Euro symbol
+\usepackage{bbding} % for \XSolidBrush
+\usepackage{pifont} % for \ding{55} (a check mark)
+
+\usepackage{float}
+\author{Álvaro González Jiménez}{Grado en Ingeniería Informática - Ingeniería del Software}{D.~}{53585603L}
+\authorURL{https://github.com/alvarogonjim}
+\authorEMail{alvgonjim1@alum.us.es}
+\setTitle{Deep learning for Image Classification}
+%\setSubtitle{No subtitle}
+\setUniversity{Universidad de Sevilla}
+
+\supervisor{Isabel A. Nepomuceno Chamorro}{Dr.~}{Lenguajes y Sistemas Informáticos}
+
+
+
+\makeglossaries
+\begin{document}
+\makeTitlePage
+
+\pagestyle{empty}
+\begin{dedication}
+Tu dedicatoria aquí
+\end{dedication}
+\pagenumbering{roman}
+\pagestyle{trinidadPhD}
+
+\input{agradecimientos}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listoftodos
+\newpage
+
+\pagenumbering{arabic}
+
+\lineNumbersOn
+\part{Introducción}
+\input{Contexto}
+\input{Objetivos}
+
+\part{Appendices}
+\appendix
+
+
+\lineNumbersOff
+
+\glossarystyle{long}
+\printglossaries
+\newpage
+
+\begin{thebibliography}{9}
+
+\bibitem{ai-ml-dl-image} Pippa Biddle,Diamond Inc {\em https://bit.ly/2rkhRUY }, June 2017
+
+  \bibitem{fsancho} Fernando Sancho Caparrini {\em http://www.cs.us.es/~fsancho/?e=72}  23 of April 2017.
+
+  \bibitem{sagar} Sagar Sharma {\em https://towardsdatascience.com/what-the-hell-is-perceptron-626217814f53} 9 of September 2017.
+
+  \bibitem{rajalingappaa} Rajalingappaa Shanmugamani {\em Deep learning for computer vision: expert techniques to train advanced neural networks using TensorFlow and Keras} 2018.
+
+  \bibitem{abdullah} Abdullah-Al Nahid, Mohamad Ali Mehrabi, and Yinan Kong{\em Histopathological Breast Cancer Image Classification by Deep Neural Network Techniques Guided by Local Clustering} 7 March 2018.School of Engineering, Macquarie University, Sydney, Australia.
+
+  \bibitem{greenspan} S. Kevin Zhou, Hayit Greenspan, Dinggang Shen
+{\em Deep learning for medical image analysis} 2017.
+
+  \bibitem{starteddeeplearning} Josh Patterson and Adam Gibson
+{\em Getting started with deep learning } 2018.
+
+\bibitem{reinforcement-learning} Maxim Lapan {\em Deep Reinforcement Learning Hands-On/}, June 2018
+
+  \bibitem{advancesneuralinformation} R.K. Srivastava, J. Masci, S. Kazerounian, F. Gomez, J. Schmidhuber {\em Advances in Neural Information Processing Systems. } 2013.
+
+  \bibitem{stochastic} M.D. Zeiler, R. Fergus{\em Stochastic pooling for regularization of deep convolutional neural networks. } 2013.
+
+  \bibitem{ml-mentions-image} Andrej Karpathy {\em 
+https://twitter.com/karpathy/status/972295865187512320?lang=es} March 2018
+
+  \bibitem{generalcomparaison} {\em https://skymind.ai/wiki/comparison -frameworks-dl4j-tensorflow-pytorch}
+
+  \bibitem{specificcomparaison} Vicky Kalogeiton Stéphane
+Lathuilière, Pauline Luc Thomas, Lucas Konstantin Shmelkov
+{\em https://project.inria.fr/deeplearning/files/2016/05/DLFrameworks.pdf} 25 of January 2017
+
+ \bibitem{tensorflow} Tensorflow API
+{\em https://www.tensorflow.org} 25 of January 2017
+
+ \bibitem{stadisticframework} Andrej Karpathy 
+{\em https://twitter.com/karpathy/status/972295865187512320}
+
+\bibitem{area-roc-curve} The Area Under an ROC Curve definition 
+{\em http://gim.unmc.edu/dxtests/roc3.htm}
+
+\bibitem{architectures} Advanced Deep Learning Architectures Data
+{\em https://www.analyticsvidhya.com/blog/2017/08/10-advanced-deep-learning-architectures-data-scientists/}
+
+ 
+ \bibitem{h20-deeplearning} Srijan Agarwal
+{\em https://opensourceforu.com/2017/01/introduction-h2o-relation-deep-learning/}, 21 of January 2018
+ 
+ \bibitem{h20-comparative-table} Oksana Kutkina, Stefan Feuerriegel
+{\em http://www.rblog.uni-freiburg.de/2017/02/07/deep-learning-in-r/}, 7 of March 2016 
+ 
+ \bibitem{dp4j-deep-learning} Josh Patterson, Adam Gibson
+{\em Deep Learning: A practitioner's approach/}, August 2017
+
+\bibitem{can-art} Ahmed Elgammal, Bingchen Liu, Mohamed Elhoseiny, Marian Mazzone {\em CAN: Creative Adversarial Networks Generating “Art” by Learning About Styles and Deviating from Style Norms/}, August 2017
+
+\end{thebibliography}
+
+
+
+\end{document} 
