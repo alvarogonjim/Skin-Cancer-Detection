@@ -1,7 +1,8 @@
 % A sample model to write a TFG project
 
 % IMPORTANT!!! Substitute "draft" with "final" to render the final version of the TFG 
-\documentclass[titlepage,openright,twoside,a4paper,final,12pt,spanish]{book}
+\documentclass[titlepage,openright,twoside,a4paper,
+final,12pt,english]{book}
 
 % Configuring the environment to support spanish characters.
 \usepackage[T1]{fontenc}
@@ -28,10 +29,13 @@
 \usepackage{pifont} % for \ding{55} (a check mark)
 
 \usepackage{float}
+\usepackage{placeins}
+
+
 \author{Álvaro González Jiménez}{Grado en Ingeniería Informática - Ingeniería del Software}{D.~}{53585603L}
 \authorURL{https://github.com/alvarogonjim}
 \authorEMail{alvgonjim1@alum.us.es}
-\setTitle{Deep learning for Image Classification}
+\setTitle{Skin Cancer Detection Using Deep Learning Techniques}
 %\setSubtitle{No subtitle}
 \setUniversity{Universidad de Sevilla}
 
@@ -43,10 +47,6 @@
 \begin{document}
 \makeTitlePage
 
-\pagestyle{empty}
-\begin{dedication}
-Tu dedicatoria aquí
-\end{dedication}
 \pagenumbering{roman}
 \pagestyle{trinidadPhD}
 
@@ -55,17 +55,17 @@ Tu dedicatoria aquí
 \tableofcontents
 \listoffigures
 \listoftables
-\listoftodos
-\newpage
 
 \pagenumbering{arabic}
 
 \lineNumbersOn
-\part{Introducción}
+\part{Introduction}
 \input{Contexto}
+\part{Project}
 \input{Objetivos}
+\part{Conclusions}
+\input{conclusions}
 
-\part{Appendices}
 \appendix
 
 
@@ -76,6 +76,9 @@ Tu dedicatoria aquí
 \newpage
 
 \begin{thebibliography}{9}
+
+\bibitem{melanoma-stadistics} Instituto Nacional Del Cáncer {\em https://www.cancer.gov/espanol/tipos/piel/pro }, June 2017
+
 
 \bibitem{ai-ml-dl-image} Pippa Biddle,Diamond Inc {\em https://bit.ly/2rkhRUY }, June 2017
 
@@ -131,6 +134,14 @@ Lathuilière, Pauline Luc Thomas, Lucas Konstantin Shmelkov
 {\em Deep Learning: A practitioner's approach/}, August 2017
 
 \bibitem{can-art} Ahmed Elgammal, Bingchen Liu, Mohamed Elhoseiny, Marian Mazzone {\em CAN: Creative Adversarial Networks Generating “Art” by Learning About Styles and Deviating from Style Norms/}, August 2017
+
+\bibitem{isic-archive-downloader} Oren Talmor, Gal Avineri {\em https://github.com/GalAvineri/ISIC-Archive-Downloader}
+
+\bibitem{data-augmentation-skin} Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle {\em Data Augmentation for Skin Lesion Analysis}
+
+
+\bibitem{gpu-cloud} Rupak Kr. Thakur {\em https://medium.com/@rupak.thakur/aws-vs-paperspace-vs-floydhub-choosing-your-cloud-gpu-partner-350150606b39}, October 24 2017
+
 
 \end{thebibliography}
 

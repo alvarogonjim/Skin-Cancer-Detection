@@ -349,7 +349,7 @@ fill=#2]
 	 \node[anchor=center,yshift=1.7cm,rectangle,
              inner sep=11pt,
               fill=white] at (title)
-              {\color{ThemeColor1}Parte \partlabel};
+              {\color{ThemeColor1}Part \partlabel};
    \end{tikzpicture}} %Before
   %[] After
 
@@ -427,9 +427,10 @@ fill=#2]
           \node  [anchor=north,yshift=0.3\paperheight-2.5cm-20pt-20pt,inner sep=11pt] (author) at (current page.center)  {\color{ThemeColor1} \textbf{\LARGE\scshape \dissertationAuthor}};
           % Supervisor node
            \node  [anchor=north,yshift=-40pt,inner sep=11pt] (dissertation) at (author)
-          {\color{ThemeColor1} \textbf{\Large Trabajo fin de Grado}};
+          {\color{ThemeColor1} \textbf{\Large Final Degree Project}};
           \node  [anchor=north,yshift=-20pt,inner sep=11pt,text width=0.8\paperwidth,text centered] at (dissertation)
-          {\parbox{0.7\paperwidth}{\centering \color{ThemeColor1}\Large\textbf{Supervisado por\drawSupervisorsEnglish}}};
+          {\parbox{0.7\paperwidth}{\centering \color{ThemeColor1}\Large\textbf{Supervisor 
+          \drawSupervisorsEnglish}}};
           % University logo
           \node [anchor=south,yshift=0.2\paperheight] (logo) at (current page.south){
               \includegraphics[width=0.25\paperwidth]{figures/universidad}
@@ -451,7 +452,7 @@ fill=#2]
 \newcommand{\disclaimer}{
 \thispagestyle{title}
 \begin{flushleft}
-\noindent Publicado en \monthYear\today ~ por\\
+\noindent Publish on \monthYear\today ~ by\\
 \dissertationAuthor\\
 Copyright \copyright ~ \uppercase\expandafter{\romannumeral \THEYEAR}\\
 
@@ -512,9 +513,9 @@ en la \university\\
 \newcommand{\authorDeclare}{
 \thispagestyle{title}
 
-\indent Yo, \dissertationAuthorTitle\dissertationAuthor~con NIF n\'umero \dissertationAuthorID,\\\\
-\indent\textbf{DECLARO}\\\\
-\indent mi autoría del trabajo que se presenta en la memoria de este trabajo fin de grado que tiene por título:\\
+\indent Me, \dissertationAuthorTitle\dissertationAuthor~ ID number \dissertationAuthorID,\\\\
+\indent\textbf{I declare}\\\\
+\indent my authorship of the work presented in the memory of this final degree project that has the title:\\
 
 \begin{center}\textit{\dissertationTitle
           \ifx \dissertationSubtitle \@undefined
@@ -524,11 +525,11 @@ en la \university\\
 	\fi}
 \end{center}
 
-\indent Lo cual firmo,\\
+\indent Which I sign,\\
 \vfill
 \begin{flushright}
 Fdo. \dissertationAuthorTitle\dissertationAuthor\\
-en la \university\\
+in \university\\
 \ddmmyyyydate\today\\
 \end{flushright}
 }

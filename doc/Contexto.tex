@@ -1,11 +1,41 @@
 %!TEX root =  tfg.tex
-\chapter{Introduction}
+\chapter{Motivation and problem definition}
+
+\begin{abstract}
+In this chapter, we will present the problem that we are going to solve in the futures chapters. Furthermore, we will explain my motivation in order to choose this topic. 
+\end{abstract}
+
+\section{Motivation and objectives}
+
+During my last year of degree I was wondering what I was going to work on my thesis. I knew I wanted to work on something related to health because I had always been interested in creating a product with value which would have an impact on society.
+
+During my internship I was in one of the most important research centres in France in the field of artificial intelligence. There I realized the potential of this technology that was emerging during these years. I could do something related to health that I had not worked previously during my studies.
+
+Rather than recent studies which the accuracy and precision are quite good our work will not have theses results because of the availables resources. However, as a responsable software developer and I will build a maintenable software following the rules and guides that I learned during these years. 
+
+The main objective is to learn about this technology that I have never studied before and achieve a scalable prototype whose precision and quality will increase in the future using different techniques. We will compare the obtained results with other algorithms and/or other works (papers, studies, etc). Finally, we are going to expose the best model in a REST API so we can build an APP which sends a picture, taken from the camera, as an input to the API and it will return the predicted results to the user.
+
+
+\section{Definition of the problem}
+Nowdays the melanoma of the skin represents 5.3\% of all new cancer cases in the U.S. In 2018, it is estimated that there will be 91,270 new cases of melanoma of the skin and an estimated 9,320 people will die of this disease.\cite{melanoma-stadistics} A quickly prediction of this disease will help to reduce the number of die people. In fact, most of the people do not realize that they have melanoma of the skin so it will make harder the cure process. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{./figures/melanoma-examples.jpg}
+\caption{Examples of melanoma of the skin. \cite{melanoma-stadistics}}
+\end{figure}
+
+As you can see in the previous image the melanoma presents a wide variety of characteristics, i.e the pigmentation of the skin will be dark, the size is bigger than the normal pigmentation of the skin and the shape is irregular.This set of characteristics make a difficult task for human eye but an interesting research line using AI algorithms to detect the melanoma. 
+
+
+\chapter{AI History and State of the art}
 
 \begin{abstract}
 In this chapter, we will explore a little bit about the 
 Machine Learning world, the algortihms that people have
 been used for years to solve this and other types of problems. A brief summary about the current frameworks that we can use to solve this problem, theirs pros and cons. Finally we are going to explain the problems that we are going to solve. 
 \end{abstract}
+
 
 \section{Artificial Inteligence History}
 
@@ -293,11 +323,11 @@ In our cat classificator the predictive value positive is:
 \end{figure}
 
 
-\subsubsection[Predictive value negative]{Predictive value negative}
+\subsubsection[Negative predictive value]{Negative predictive value}
 Measures is the proportion of negatives that correspond to the absence of the condition. 
-\[ PVN =  TN/(TN+FN) \]
+\[ NPV =  TN/(TN+FN) \]
 In our cat classificator the predictive value negative is:
-\[ PVN = 3/(3+3) = 0.5 \]
+\[ NPV = 3/(3+3) = 0.5 \]
 
 \begin{figure}[H]
 \centering
