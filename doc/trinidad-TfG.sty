@@ -454,8 +454,6 @@ fill=#2]
 \begin{flushleft}
 \noindent Publish on \monthYear\today ~ by\\
 \dissertationAuthor\\
-Copyright \copyright ~ \uppercase\expandafter{\romannumeral \THEYEAR}\\
-
 %Author URL if it exists
 \ifx \@authorURL \@undefined
 	\relax
@@ -469,6 +467,10 @@ Copyright \copyright ~ \uppercase\expandafter{\romannumeral \THEYEAR}\\
 \else
 	\@authorEMail\\
 \fi
+
+Copyright \copyright ~ \uppercase\expandafter{\romannumeral \THEYEAR}\\
+Template made by Pablo Trinidad\\
+http://www.lsi.us.es/~trinidad/\\
 
 % Copyright text if it exists
 \ifx \@copyrightText \@undefined

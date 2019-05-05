@@ -2,7 +2,7 @@
 \chapter{Dataset}
 
 \begin{abstract}
-The dataset is one of the most important things in an artificial inteligence project, we are going to define the dataset, how we obtained this data and the preprocessing methodology in order to increase the number of the data. 
+The dataset is one of the most important things in an artificial intelligence project, we are going to define the dataset, how we obtained this data and the preprocessing methodology in order to increase the number of the data. 
 \end{abstract}
 
 \section[Dataset]{Dataset}
@@ -10,21 +10,23 @@ The dataset is one of the most important things in an artificial inteligence pro
 In order to set the feasibility of the project we have to look for a good dataset which contains a great deal of different data. In our case it's not a hard task to acquire the data, the ISIC institute exposed in 2018 more than 20.000 skin lesion images during a challenge. 
 \url{https://challenge2018.isic-archive.com/}
 
-Furthermore exist other famous datasets like \emph{PH2Dataset} from the Oporto Universiy which the number of images is much lower but we can use some Data Augmentation techniques to improve the results.
+Furthermore exist other famous datasets like \emph{PH2Dataset} from the Oporto University which the number of images is much lower but we can use some Data Augmentation techniques to improve the results.
 
 \subsection{Acquisition of data}
 
-The ISIC Archive contains over 23k images of skin lesions, labeled as 'benign' or 'malignant'. The first option to download the entire ISIC archive is via the direct download button on their website, which is the easiest and most comfortable way and doesn't always finish successfully for some reason. We suspect this is happening due to the large file size. 
+The ISIC Archive contains over 23k images of skin lesions, labelled as 'benign' or 'malignant'. The first option to download the entire ISIC archive is via the direct download button on their website, as you can see in the figure ~\ref{fig:isicweb} which is the easiest and most comfortable way and doesn't always finish successfully for some reason. We suspect this is happening due to the large file size. 
+
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./figures/isic-dataset}
 \caption{Download the data from the ISIC website}
+\label{fig:isicweb}
 \end{figure}
 
-The second option is to download the small partitions of the archive, called 'datasets' one by one. Seems rather good if you plan to download the archive only a few times and 
+The second option is to download the small partitions of the archive, called 'datasets' one by one. Seems rather good if you plan to download the archive only a few times.
 
-The third option is to download the archive using the Grider API provided in the website but seems unfeasible.
+The third option is to download the archive using the Grider API provided in the website but seems infeasible.
 
 
 Thankfully, Oren Talmor and Gal Avineri have created a script which we can use to download all the ISIC archive easily \cite{isic-archive-downloader}. Furthermore we can filter and limit the number of images that we want to download.
@@ -32,28 +34,30 @@ Thankfully, Oren Talmor and Gal Avineri have created a script which we can use t
 
 After download the ISIC archive we divided in two separated folders:
 \begin{itemize}
-\item Trainning: The neuronal network will use the images in this folder to get trainning in every epochs.
-\item Test: The neuronal network will use the images in this folder to validate the trainning process and calculate the accuracy of the model in every epochs.
+\item Training: The neuronal network will use the images in this folder to get training in every epochs.
+\item Test: The neuronal network will use the images in this folder to validate the training process and calculate the accuracy of the model in every epochs.
 \end{itemize}
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./figures/dataset-plot-size}
-\caption{Data divided in trainning and test groups}
+\caption{Data divided in training and test groups}
 \end{figure}
 
 You can see in the figure that we divided the dataset in the two groups, 
-4000 images will be used for trainning and 400 images for test porpouses.
+4000 images will be used for training and 400 images for test purposes.
 Furthermore we have implemented some preprocessing techniques to increase the number of data but we will explain these techniques in the next section.
 
 \subsection{Image preprocessing}
-The image preprocessing is critical to subsequent steps and plays an important role in achieving a good performance. The source dermoscpic images provided by the competition are obtained from real clinic environment, which means that there are a great number of man-made interferences. The objective of preprocessing is to improve the quality of the source images,and make the following parts run easily.
+The image preprocessing is critical to subsequent steps and plays an important role in achieving a good performance. The source dermoscopy images provided by the competition are obtained from real clinic environment, which means that there are a great number of man-made interferences. The objective of preprocessing is to improve the quality of the source images,and make the following parts run easily. In the next figure 
+~\ref{fig:dataaugentation} you can see some techniques of image preprocessing (crop, rotation, scaling, add noise, change the colours and so on).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./figures/data-augmentation}
 \caption{Examples of data augmentation. \cite{data-augmentation-skin}}
+\label{fig:dataaugentation}
 \end{figure}
 
 We are going to use some techniques for data augmentation. Data augmentation goal is to add new data
@@ -70,14 +74,14 @@ information and target labels \cite{data-augmentation-skin}. Thus, it is used to
 \chapter{Data analysis}
 
 \begin{abstract}
-What is the best architecture? Which parameters should we change? How do we define a good model? In this chapter we are going to explain all these questions, we are going to expose the 3 differents models that we are going to test and validate their results.
+What is the best architecture? Which parameters should we change? How do we define a good model? In this chapter we are going to explain all these questions, we are going to expose the 3 different models that we are going to test and validate their results.
 
 \end{abstract}
 
 \section{Transfer Learning}
-In practice, very few people train an entire Convolutional Network from scratch (with random initialization), because it is relatively rare to have a dataset of sufficient size. Instead, it is common to pretrain a ConvNet on a very large dataset (e.g. ImageNet, which contains 1.2 million images with 1000 categories), and then use the ConvNet either as an initialization or a fixed feature extractor for the task of interest.
+In practice, very few people train an entire Convolutional Network from scratch (with random initialization), because it is relatively rare to have a dataset of sufficient size. Instead, it is common to pretrain a ConvNet on a very large dataset (e.g. ImageNet, which contains 1.2 million images with 1000 categories), and then use the ConvNet either as an initialization or a fixed feature extractor for the task of interest \cite{transfer-learning-dl-essentials}.
 
-Instead of random initializaion, we initialize the network with a pretrained network, like the one that is trained on imagenet 1000 dataset. We will freeze the weights for all of the network except that of the final fully connected layer. This last fully connected layer is replaced with a new one with random weights and only this layer is trained.
+This technique, initialize the neuronal network with a pretrained model (from the ImageNet challenge) then the weights of all the network will be frozen except of the two last fully connected layers that corresponds with the output of our problem (malignant or benign). This is the only layer which is trained during all the process.
 
 In the next tables we are going to define the models that we are going to train and test for our project.
 \FloatBarrier
@@ -136,7 +140,7 @@ In this chapter we are going to define the requirements of our software solution
 
 \section{Requirements of the software}
 
-The main goal of this project is research about Deep Learning and how can we use this techniques to analize skin cancer images, so we are not in the classical software lifecycle. However, we are going to provide an API that we will consume from an App to get the results of the predictions, this is just a prototype to show the power of this technology and how can we use in a real world.
+The main goal of this project is research about Deep Learning and how can we use this techniques to analyse skin cancer images, so we are not in the classical software lifecycle. However, we are going to provide an API that we will consume from an App to get the results of the predictions, this is just a prototype to show the power of this technology and how can we use in a real world.
 
 
 \FloatBarrier
@@ -231,7 +235,7 @@ The main goal of this project is research about Deep Learning and how can we use
 
 
 \section{Design and architecture}
-In this section we are going to define the architecture of our software, we will present the class diagram, the secuences diagrams, the definition of the API and the mocks up of the App.
+In this section we are going to define the architecture of our software, we will present the class diagram, the sequences diagrams, the definition of the API and the mocks up of the App.
 
 \subsection{Component UML}
 
@@ -241,7 +245,7 @@ In this section we are going to define the architecture of our software, we will
 \caption{Component UML of the system.}
 \end{figure}
 
-The system is based on 3 main components, the Data Loader whose main objective is to load the images from the trainnig and tests folders in an efficient way. The Data Visualization is the responsible of give the plots and figures of the trainning process to evaluate and monitor it. The Neuronal Network will train the model to predict the skin cancer images that we will use in the API component. 
+The system is based on 3 main components, the Data Loader whose main objective is to load the images from the training and tests folders in an efficient way. The Data Visualization is the responsible of give the plots and figures of the training process to evaluate and monitor it. The Neuronal Network will train the model to predict the skin cancer images that we will use in the API component. 
 
 
 \subsection{Use Cases UML}
@@ -309,7 +313,7 @@ The system is based on 3 main components, the Data Loader whose main objective i
 
 In this subsection we are going to define the API that we will consume to predict the new images for the APP. 
 
-The API only has a endpoint which is the responsible to receive the image from the APP, evaluate it with the trainned model and return the result throught a JSON.
+The API only has a endpoint which is the responsible to receive the image from the APP, evaluate it with the trained model and return the result through a JSON.
 
 We can think that the endpoint should use the GET attribute because we want to get some information about an image. However, it is not possible to send an image with the GET attribute so we must use the POST attribute for that. 
 
@@ -330,15 +334,16 @@ We can think that the endpoint should use the GET attribute because we want to g
 
 \subsection{APP Prototype}
 
-As we have described in the previous section we are going to build an APP that consumes the services of the API, this is just a prototype for research porpouses. However, we can include more features to this APP and sell it as a product or SAAS.
+As we have described in the previous section we are going to build an APP that consumes the services of the API, this is just a prototype for research purposes. However, we can include more features to this APP and sell it as a product or SAAS.
 
-The APP must work in the most important platforms, Android and IOs. Furthermore, we have to be able to take a picture from the camera or get it from the gallery. We need a simple APP so we will implement one screen with the input data and show the results on the same. 
+The APP must work in the most important platforms, Android and IOs. Furthermore, we have to be able to take a picture from the camera or get it from the gallery. We need a simple APP so we will implement one screen with the input data and show the results on the same. You can see in the next figures ~\ref{fig:mockup} ~\ref{fig:app} the mobile application that we are going to build.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./figures/Mockup}
 \caption{Mockup of the APP.}
+\label{fig:mockup}
 \end{figure}
 
 
@@ -346,6 +351,7 @@ The APP must work in the most important platforms, Android and IOs. Furthermore,
 \centering
 \includegraphics[width=1\textwidth]{./figures/mockup-android}
 \caption{Final version of the APP.}
+\label{fig:app}
 \end{figure}
 
 
@@ -358,17 +364,17 @@ We are going to follow the structure of a 	classical AI projects wich contains t
 \item Obtain the data 
 \item Cleaning and preprocessing the data
 \item Build a model
-\item Evaluate it and tunning it to improve the results
+\item Evaluate it and tuning it to improve the results
 \item Deploy the model or expose it in an API
 \end{enumerate}
 
-We will define the structure of the projet in the EDT (next section).
+We will define the structure of the project in the EDT (next section).
 
-\subsection{Resources availables}
+\subsection{Resources available}
 
 \subsubsection{Hardware and Software}
 
-The hardware is one of the most important thing in an AI project, it will determine the time to get the results of the model. Nowdays GPUs provide a great deal of speed in calculus and mathematics operations. In our case we haven't got the machines with GPUs, but we can use one of the famous GPUs clouds (AWS, Google Cloud, Paperspace, Floydhub, etc). 
+The hardware is one of the most important thing in an AI project, it will determine the time to get the results of the model. Nowadays GPUs provide a great deal of speed in calculus and mathematics operations. In our case we haven't got the machines with GPUs, but we can use one of the famous GPUs clouds (AWS, Google Cloud, Paperspace, Floydhub, etc). 
 
 There are plenty of GPUs clouds services if we compare them the best between hardware and price is Paperspace \cite{gpu-cloud}. 
 
@@ -391,22 +397,22 @@ There are plenty of GPUs clouds services if we compare them the best between har
 \begin{table*}[htb]
 	\centering
 	\begin{coolTable}{p{4cm}p{\textwidth-4.5cm}}{2}
-{Machine 2 - Paperspace Server}
+{Machine 2 - Google Collab}
 	\textbf{Model}& P5000\\
 	\textbf{CPU}&Intel Xeon E5-2623 v4\\
 	\textbf{GPU}&NVIDIA Quadro P5000 with 2560 CUDA cores.\\
 	\textbf{RAM Memory}&30GB \\
 	\textbf{OS}&Ubuntu 18.04\\	
-	\textbf{Price}&0.78 \$/hour\\		
+	\textbf{Price}&0 \$/hour\\		
 	\end{coolTable}
-	\caption{Machine 2 - Paperspace Server}
+	\caption{Machine 2 - Google Collab}
 \end{table*}
 
 \FloatBarrier
 
-The machine 1 will be used to read the articles, write the documentation and train the base model because it hasn't got the enought resources and power to train the entire dataset, it will take more than 1 week to train the dataset.  
+The machine 1 will be used to read the articles, write the documentation and train the base model because it hasn't got the enough resources and power to train the entire dataset, it will take more than 1 week to train the dataset.  
 
-The machine 2 will be used to train the models, modify them and get the best accuracy. The trainning time in this machine will take few hours.
+The machine 2 will be used to train the models, modify them and get the best accuracy. The training time in this machine will take few hours.
 
 The software that we will use in the machine 1 are:
 \begin{enumerate}
@@ -436,13 +442,13 @@ The only available person to make this project is myself cause this is a final d
 \begin{table*}[htb]
 	\centering
 	\begin{coolTable}{p{4cm}p{\textwidth-4.5cm}}{2}
-{Person 1 - Dr. Isabel Nepomuceno Chamorro}
-	\textbf{Rol}&Supervisor\\
+{Person 1 - Ph.D. Isabel Nepomuceno Chamorro}
+	\textbf{Rol}&Ph.D.\\
 	\textbf{Organization}&Dpto. de Lenguaje y Sistemas Informaticos (LSI)	\\
 	\textbf{Description}&Member of the LSI department, she will guide the student to
 	build good project and review the documentation.\\
 	\end{coolTable}
-	\caption{People 1 - Dr. Isabel Nepomuceno Chamorro}
+	\caption{People 1 - Ph.D. Isabel Nepomuceno Chamorro}
 \end{table*}
 \FloatBarrier
 
@@ -463,10 +469,13 @@ The only available person to make this project is myself cause this is a final d
 
 \subsection{Work Breakdown Structure}
 
+To achieve the goal of our projectl we must plan each of the elements of the system and interconnect them as if they were boxes, this technique we call mind map to see the information we have (in our case what tasks we have) you can see the result of our mind map in the figure ~\ref{fig:mindmap}, later in the following figure ~\ref{fig:wbs} we can observe a work breakdown structure (WBS) that organizes the team's work into manageable sections, besides this technique is effective to measure and monitor the time that are needed in each of the sections.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{./figures/edt}
 \caption{Mind map of the project}
+\label{fig:mindmap}
 \end{figure}
 
 
@@ -474,6 +483,7 @@ The only available person to make this project is myself cause this is a final d
 \centering
 \includegraphics[width=1\textwidth]{./figures/wbs-project}
 \caption{Work Breakdown Structure}
+\label{fig:wbs}
 \end{figure}
 
 
@@ -776,11 +786,9 @@ The project will be done in 9 months so the cost associated is:
 
 \[Annual repayment = 135 eur * 0.75 year = 101,25 eur\]
 
-The cost of using the second machine is:
-\[0,78€/hour * 100 hours = 78 eur\]
 
 \newpage
-In this section we will make the sum of all the costs associated with the project, which are mainly personnel costs and hardware costs. Knowing that the personnel costs amount to 4214,9€ and the hardware costs, to 179,25€. We have that the total cost of the project is 4214,9€ + 179,25€ = 4.394,45€. 
+In this section we will make the sum of all the costs associated with the project, which are mainly personnel costs and hardware costs. Knowing that the personnel costs amount to 4214,9€ and the hardware costs, to 101,25€. We have that the total cost of the project is 4214,9€ + 101,25€ = 4.113,65€. 
 \FloatBarrier
 \begin{table*}[htb]
 	\centering
@@ -788,8 +796,7 @@ In this section we will make the sum of all the costs associated with the projec
 {Summary of the cost of the project}
 	\textbf{People salary}&4214,9 €\\		
 	\textbf{Machine 1}&101,25 €\\
-	\textbf{Machine 2}&78 €\\
-	\textbf{Total}&4.394,15 €\\
+	\textbf{Total}&4.113,65 €\\
 	\end{coolTable}
 	\caption{Summary of the cost of the project}
 \end{table*}
@@ -837,8 +844,20 @@ The last model the architecture used is a ResNet alteration called DenseNet in w
 \end{figure}
 
 
-In conclusion, the model we have selected has been the second (Resnet-50) due to the precision it gives us. In the following section we are going to calculate the sensitivity, the specificity and the area under the ROC curve.
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+\textbf{Architecture} & \textbf{Epochs} & \textbf{Optimizer} & \textbf{Time}  & \textbf{Acc. Training} & \textbf{Acc. Test} \\ \midrule
+ResNet - 18           & 18              & Adam               & 4 Hours        & 0.87                   & 0.74               \\
+ResNet - 50           & 21              & SGD                & 7 Hours 30 Min & 0.95                   & 0.88               \\
+DenseNet              & 21              & SGD                & 7 Hours 45 Min & 0.94                   & 0.85               \\ \bottomrule
+\end{tabular}
+\end{table}
 
+
+In conclusion, the model we have selected has been the second (ResNet-50) due to the precision it gives us. In the following section we are going to calculate the sensitivity, the specificity and the area under the ROC curve.
 
 \subsection{Obtaining the Confusion Matrix}
 
@@ -875,6 +894,6 @@ PVP will measure the proportions of positive and negative results in statistics 
 NPV will measure the proportions of positive and negative results in statistics and diagnostic tests that are true negative. The ideal value of the NPV, with a perfect test, is 1 (100\%)
 \[ NPV = TN/(TN+FN) = 173 / (173+21) = 0,892 \]
 
-In the metrics it can be seen that the classifier is quite homogeneous, and things don't happen that are difficult to interpret. The classifier, as can be seen in the confusion matrix, has a fairly stable level of success in both classes, which indicates that it has correctly generalized the detection of cancer in the images. in short, the classifier has behaved very well compared to this set of images with respect to other classifiers and techniques. 
+In the metrics it can be seen that the classifier is quite homogeneous, and things don't happen that are difficult to interpret. The classifier, as can be seen in the confusion matrix, has a fairly stable level of success in both classes, which indicates that it has correctly generalized the detection of cancer in the images. In short, the classifier has behaved very well compared to this set of images with respect to other classifiers and techniques. 
 
-Even knowing that medical images are complicated to deal with, the classifier has been able to generalize the details that separate a image of a patient who suffers from skin cancer of another patient who does not suffer from it, thus achieving predict accurately in most cases.
+Even knowing that medical images are complicated to deal with, the classifier has been able to generalize the details that separate an image of a patient who suffers from skin cancer of another patient who does not suffer from it, thus achieving predict accurately in most cases.
