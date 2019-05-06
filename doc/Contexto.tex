@@ -79,6 +79,46 @@ Some examples of machine learning systems in the real life are:
 \item Recommendations systems which are family of ML algorithms. We can see this kind of recommendations systems in many famous apps like Spotify (music), Netflix (movies) and Amazon (products).
 \end{itemize}
 
+
+\subsection[Classical Machine Learning]{Classical Machine Learning}
+
+The first methods came from pure statistics in the '50s. They solved formal math tasks — searching for patterns in numbers, evaluating the proximity of data points, and calculating vectors' directions \cite{classicalmachinelearning}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{./figures/classicalml}
+\caption{Classical Machine Learning algorithms \cite{classicalmachinelearning}}
+\label{fig:classicalml}
+\end{figure}
+
+
+
+As you can see in the image ~\ref{fig:classicalml} there are two main groups in the classical machine learning, the first one called supervised because we teach the algorithm. The data that we use in this type of learning is labelled and they try to predict a category (classification) or a number (regression) from the previous data and experience. 
+
+
+On the other hand we have unsupervised learning. It is very hard to find labelled data, in the internet all the data that we can find are not labelled so we can spend days putting a label to the data one by one or we can use this types of algorithms to find relations and categories by themselves. 
+
+
+The most important algorithms in the unsupervised learning are clustering to divide objects based on unknown features. Dimensionality reduction that assembles specific features into more high level ones and associated rule learning that looks for patterns in the order's stream \cite{classicalmachinelearning}.
+
+\subsection[Ensemble Methods]{Ensemble Methods}
+
+This technique are being used because of the accuracy that they can produce. The idea is quite simple to understand, just take some algorithms (regression, decision trees, kNN, Naive Bayes and so on) and put it together to get a better result. 
+
+You'll get even better results if you take the most unstable algorithms that are predicting completely different results on small noise in input data \cite{classical-ml}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{./figures/bagging}
+\caption{Explanation of the bagging algorithm \cite{classicalmachinelearning}}
+\label{fig:bagging}
+\end{figure}
+
+
+The previous image ~\ref{fig:bagging} represents one of the most famous ensemble methods, the random forest, which is simply bagging on the decision trees. Although you have other types of ensemble methods like Stacking or Boosting.
+
+
+
 \subsection[Deep Learning]{Deep Learning}
 Deep Learning is a sub-field of ML, that uses specific algorithms to extract features from images. They are based on neuronal networks whose inputs are each pixels of the image and they predict a label as an output.
 
